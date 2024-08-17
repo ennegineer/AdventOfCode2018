@@ -4,7 +4,6 @@
 with open("input.txt", "r") as input:
     data = input.read().split('\n')
 
-
 # Part One - calculate frequency changes
 def PartOne():
     frequency = 0
@@ -27,7 +26,7 @@ def PartTwo():
     solved = False
 
     def RunList(frequency, all_frequencies):
-        freq = frequency
+        freq = int(frequency)
         all_freq = all_frequencies
         for row in data:
             if row[0] == '+':
@@ -36,10 +35,9 @@ def PartTwo():
                 if freq not in all_freq:
                     # Add the frequency to our frequency list
                     all_freq.append(freq)
-                    print(f'adding frequency {freq}')
+                    # print(f'adding frequency {freq}')
                 else:
-                    solved = True
-                    return (freq, all_freq, solved)
+                    return (freq, all_freq, True)
                 
             if row[0] == '-':
                 freq -= int(row[1:])
@@ -47,24 +45,27 @@ def PartTwo():
                 if freq not in all_freq:
                     # Add the frequency to our frequency list
                     all_freq.append(freq)
-                    print(f'adding frequency {freq}')
+                    # print(f'adding frequency {freq}')
                 else:
-                    solved = True
-                    return (freq, all_freq, solved)
+                    return (freq, all_freq, True)
         return (freq, all_freq, False)
 
 
 
-    while solved == False:
+    while 1==1:
         frequency, all_frequencies, solved = RunList(current_frequency, frequencies)
         if solved == True:
             print(frequency)
             break
         current_frequency = frequency
         frequencies = all_frequencies
-        
-
+        print("Next loop")
+        # print(current_frequency, len(frequencies), len(set(frequencies)))
+        # all_frequencies.sort()
+        # print(all_frequencies)
+        # break
     print(frequency)
+    # This runs very slowly, but yields 367 as the answer (which is correct).
             
 PartTwo()
 
